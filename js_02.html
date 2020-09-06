@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Practicas web js</title>
+	<meta charset="utf-8">
+</head>
+<body onmouseup="drag_n()" ondragend="drag_n()">
+	<div id="cuerpo" style="width: 800px;height: 600px;border:solid;margin:auto;">
+		<div id="obj_1" style=" width: 32px;height: 32px;border-radius: 16px;border:solid;background-color: cyan; position: absolute;" onmousedown="drag()" onblur="drag()" >
+		</div>
+
+	</div>
+
+	<script type="text/javascript">
+		var base = document.getElementById('cuerpo');
+		var pj_1 = document.getElementById('obj_1');
+		var s_drag = false;
+		var m_x = 0;
+		var m_y = 0;
+		var obj_1 = {
+			x:0,y:0,mov : function (x,y){
+			pj_1.style.marginLeft = x +"px";
+			pj_1.style.marginTop = y +"px";
+			this.x = x;
+			this.y = y;
+
+			}
+		}
+
+		function drag(){
+				s_drag = true;
+		}
+		function drag_n(){
+			s_drag = false;
+		}
+
+		function m_pos(e){
+			x = e.pageX;
+			y = e.pageY;
+			var diferencia = (window.innerWidth - parseInt(base.style.width) ) / 2;
+			if (s_drag == true){
+				if(window.innerWidth >= 800){
+				obj_1.mov(x - diferencia - 5,y - 20);}else{
+					obj_1.mov(x- 5,y - 20);
+				}
+
+			}
+			
+		}
+		document.body.onmousemove = m_pos;
+	</script>
+</body>
+</html>
